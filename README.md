@@ -20,7 +20,7 @@ Available on [Quay](https://quay.io) as [`quay.io/ricardbejarano/blackbox_export
 
 ## Features
 
-* Can't get any smaller (`~14.9MB`), only two files: the binary and the config
+* Can't get any smaller (`~14.9MB`)
 * Binary pulled from the official website
 * Built `FROM scratch`, see the [Filesystem](#Filesystem) section below for an exhaustive list of the image's contents
 * Reduced attack surface (no `bash`, no UNIX tools, no package manager...)
@@ -35,7 +35,7 @@ docker build -t blackbox_exporter .
 
 ## Volumes
 
-- Bind your **configuration file** at `/blackbox.yml`.
+- Bind your **configuration file** at `/etc/blackbox/blackbox.yml`.
 
 
 ## Filesystem
@@ -45,7 +45,11 @@ The images' contents are:
 ```
 /
 ├── blackbox_exporter
-└── blackbox.yml
+└── etc/
+    ├── blackbox/
+    │   └── blackbox.yml
+    ├── group
+    └── passwd
 ```
 
 

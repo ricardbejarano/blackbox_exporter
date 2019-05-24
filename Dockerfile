@@ -14,7 +14,10 @@ RUN cd /tmp && \
 FROM scratch
 
 COPY --from=build /tmp/blackbox_exporter/blackbox_exporter /blackbox_exporter
-COPY --from=build /tmp/blackbox_exporter/blackbox.yml /blackbox.yml
+COPY --from=build /tmp/blackbox_exporter/blackbox.yml /etc/blackbox/blackbox.yml
 
+COPY rootfs /
+
+USER blackbox
 ENTRYPOINT ["/blackbox_exporter"]
-CMD ["--config.file=/blackbox.yml"]
+CMD ["--config.file=/etc/blackbox/blackbox.yml"]
