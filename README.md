@@ -20,7 +20,7 @@ Available on [Quay](https://quay.io) as [`quay.io/ricardbejarano/blackbox_export
 
 ## Features
 
-* Can't get any smaller (`~14.9MB`)
+* Can't get any smaller (`~15.2MB`)
 * Binary pulled from the official website
 * Built `FROM scratch`, see the [Filesystem](#Filesystem) section below for an exhaustive list of the image's contents
 * Reduced attack surface (no `bash`, no UNIX tools, no package manager...)
@@ -49,7 +49,10 @@ The images' contents are:
     ├── blackbox/
     │   └── blackbox.yml
     ├── group
-    └── passwd
+    ├── passwd
+    └── ssl/
+        └── certs/
+            └── ca-certificates.crt
 ```
 
 
