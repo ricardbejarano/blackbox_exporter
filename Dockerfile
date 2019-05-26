@@ -22,6 +22,8 @@ COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certifica
 
 COPY rootfs /
 
-USER blackbox
+USER blackbox:blackbox
+WORKDIR /
+EXPOSE 9115/tcp
 ENTRYPOINT ["/blackbox_exporter"]
 CMD ["--config.file=/etc/blackbox/blackbox.yml"]
