@@ -26,16 +26,18 @@ Available on [Quay](https://quay.io) as [`quay.io/ricardbejarano/blackbox_export
 * Reduced attack surface (no `bash`, no UNIX tools, no package manager...)
 
 
+## Configuration
+
+### Volumes
+
+- Bind your **configuration file** at `/etc/blackbox/blackbox.yml`.
+
+
 ## Building
 
 ```bash
 docker build -t blackbox_exporter .
 ```
-
-
-## Volumes
-
-- Bind your **configuration file** at `/etc/blackbox/blackbox.yml`.
 
 
 ## Filesystem
