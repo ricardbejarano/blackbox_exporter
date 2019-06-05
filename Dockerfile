@@ -16,9 +16,9 @@ RUN apt update && \
 
 FROM scratch
 
-COPY --from=build /tmp/blackbox_exporter/blackbox_exporter /blackbox_exporter
-COPY --from=build /tmp/blackbox_exporter/blackbox.yml /etc/blackbox/blackbox.yml
-COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=build /tmp/blackbox_exporter/blackbox.yml /etc/blackbox/
+COPY --from=build /tmp/blackbox_exporter/blackbox_exporter /
 
 COPY rootfs /
 
