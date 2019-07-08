@@ -21,7 +21,7 @@ COPY --from=build /tmp/blackbox_exporter/blackbox_exporter /
 
 COPY rootfs /
 
-USER blackbox:blackbox
+USER 100:100
 EXPOSE 9115/tcp
 ENTRYPOINT ["/blackbox_exporter"]
 CMD ["--config.file=/etc/blackbox/blackbox.yml"]
