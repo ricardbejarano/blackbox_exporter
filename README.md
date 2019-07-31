@@ -1,6 +1,6 @@
-<p align=center><img src=https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/198/fire-extinguisher_1f9ef.png width=120px></p>
-<h1 align=center>blackbox_exporter (container image)</h1>
-<p align=center>The simplest container image of the official Prometheus <a href=https://github.com/prometheus/blackbox_exporter>blackbox_exporter</a></p>
+<p align="center"><img src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/320/apple/198/fire-extinguisher_1f9ef.png" width="120px"></p>
+<h1 align="center">blackbox_exporter (container image)</h1>
+<p align="center">Built-from-source container image of Prometheus' <a href="https://github.com/prometheus/blackbox_exporter">blackbox_exporter</a></p>
 
 
 ## Tags
@@ -20,17 +20,11 @@ Available on [Quay](https://quay.io) as [`quay.io/ricardbejarano/blackbox_export
 
 ## Features
 
-* Super tiny (`~15.2MB`)
-* Binary pulled from official website
-* Built `FROM scratch`, see [Filesystem](#filesystem) for an exhaustive list of the image's contents
+* Super tiny (about `15.2MB`)
+* Binary pulled from official sources during build time
+* Built `FROM scratch`, with zero bloat (see [Filesystem](#filesystem))
 * Reduced attack surface (no shell, no UNIX tools, no package manager...)
-
-
-## Configuration
-
-### Volumes
-
-- Bind your **configuration** at `/etc/blackbox/blackbox.yml`.
+* Runs as unprivileged (non-`root`) user
 
 
 ## Building
@@ -40,16 +34,20 @@ docker build -t blackbox_exporter .
 ```
 
 
-## Filesystem
+## Configuration
 
-The images' contents are:
+### Volumes
+
+- Mount your **configuration** at `/blackbox.yml`.
+
+
+## Filesystem
 
 ```
 /
+├── blackbox.yml
 ├── blackbox_exporter
 └── etc/
-    ├── blackbox/
-    │   └── blackbox.yml
     ├── group
     ├── passwd
     └── ssl/
