@@ -1,13 +1,13 @@
 FROM alpine AS build
 
-ARG EXPORTER_VERSION="0.14.0"
-ARG EXPORTER_CHECKSUM="a2918a059023045cafb911272c88a9eb83cdac9a8a5e8e74844b5d6d27f19117"
+ARG VERSION="0.14.0"
+ARG CHECKSUM="a2918a059023045cafb911272c88a9eb83cdac9a8a5e8e74844b5d6d27f19117"
 
-ADD https://github.com/prometheus/blackbox_exporter/releases/download/v$EXPORTER_VERSION/blackbox_exporter-$EXPORTER_VERSION.linux-amd64.tar.gz /tmp/blackbox_exporter.tar.gz
+ADD https://github.com/prometheus/blackbox_exporter/releases/download/v$VERSION/blackbox_exporter-$VERSION.linux-amd64.tar.gz /tmp/blackbox_exporter.tar.gz
 
-RUN [ "$EXPORTER_CHECKSUM" = "$(sha256sum /tmp/blackbox_exporter.tar.gz | awk '{print $1}')" ] && \
+RUN [ "$CHECKSUM" = "$(sha256sum /tmp/blackbox_exporter.tar.gz | awk '{print $1}')" ] && \
     tar -C /tmp -xf /tmp/blackbox_exporter.tar.gz && \
-    mv /tmp/blackbox_exporter-$EXPORTER_VERSION.linux-amd64 /tmp/blackbox_exporter
+    mv /tmp/blackbox_exporter-$VERSION.linux-amd64 /tmp/blackbox_exporter
 
 RUN apk add ca-certificates && \
     echo "nogroup:*:100:nobody" > /tmp/group && \
