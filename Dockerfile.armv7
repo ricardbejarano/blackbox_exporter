@@ -14,7 +14,7 @@ RUN apk add ca-certificates && \
     echo "nobody:*:100:100:::" > /tmp/passwd
 
 
-FROM scratch
+FROM ricardbejarano/scratch:arm
 
 COPY --from=build --chown=100:100 /tmp/blackbox_exporter/blackbox_exporter \
                                   /tmp/blackbox_exporter/blackbox.yml \
