@@ -8,6 +8,7 @@ ADD https://github.com/prometheus/blackbox_exporter/releases/download/v$VERSION/
 RUN [ "$CHECKSUM" = "$(sha256sum /tmp/blackbox_exporter.tar.gz | awk '{print $1}')" ] && \
     tar -C /tmp -xf /tmp/blackbox_exporter.tar.gz && \
     apk add ca-certificates
+
 RUN mkdir -p /rootfs/etc/ssl/certs && \
     cp \
       /tmp/blackbox_exporter-$VERSION.linux-amd64/blackbox_exporter \
