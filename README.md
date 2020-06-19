@@ -9,13 +9,13 @@
 
 Available on [Docker Hub](https://hub.docker.com) as [`ricardbejarano/blackbox_exporter`](https://hub.docker.com/r/ricardbejarano/blackbox_exporter):
 
-- [`0.16.0`, `master`, `latest` *(Dockerfile)*](https://github.com/ricardbejarano/blackbox_exporter/blob/master/Dockerfile) (about `17.3MB`)
+- [`0.17.0`, `master`, `latest` *(Dockerfile)*](https://github.com/ricardbejarano/blackbox_exporter/blob/master/Dockerfile) (about `17.3MB`)
 
 ### Quay
 
 Available on [Quay](https://quay.io) as:
 
-- [`quay.io/ricardbejarano/blackbox_exporter`](https://quay.io/repository/ricardbejarano/blackbox_exporter), tags: [`0.16.0`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/blackbox_exporter/blob/master/Dockerfile.glibc) (about `17.3MB`)
+- [`quay.io/ricardbejarano/blackbox_exporter`](https://quay.io/repository/ricardbejarano/blackbox_exporter), tags: [`0.17.0`, `master`, `latest` *(Dockerfile.glibc)*](https://github.com/ricardbejarano/blackbox_exporter/blob/master/Dockerfile.glibc) (about `17.3MB`)
 
 
 ## Features
