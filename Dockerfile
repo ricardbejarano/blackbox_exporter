@@ -1,7 +1,7 @@
 FROM alpine:3 AS build
 
-ARG VERSION="0.17.0"
-ARG CHECKSUM="6ebe26d1e97d26ee08d0cd6d37a34f2f67c8414ea5e40407eadc0ac950ed518e"
+ARG VERSION="0.18.0"
+ARG CHECKSUM="a87f9530e31e2b20d03a6d941f6f051c57ee724f24b38f2615b8580ca63966dc"
 
 ADD https://github.com/prometheus/blackbox_exporter/releases/download/v$VERSION/blackbox_exporter-$VERSION.linux-amd64.tar.gz /tmp/blackbox_exporter.tar.gz
 
