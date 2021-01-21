@@ -1,28 +1,33 @@
-FROM alpine:3 AS build
+FROM golang:1-alpine AS build
 
 ARG VERSION="0.18.0"
-ARG CHECKSUM="a87f9530e31e2b20d03a6d941f6f051c57ee724f24b38f2615b8580ca63966dc"
+ARG CHECKSUM="b41f1301c991c0d0011652e2093588521925d1960c6f7649f96edecbf1aadfb8"
 
-ADD https://github.com/prometheus/blackbox_exporter/releases/download/v$VERSION/blackbox_exporter-$VERSION.linux-amd64.tar.gz /tmp/blackbox_exporter.tar.gz
+ADD https://github.com/prometheus/blackbox_exporter/archive/v$VERSION.tar.gz /tmp/blackbox_exporter.tar.gz
 
 RUN [ "$CHECKSUM" = "$(sha256sum /tmp/blackbox_exporter.tar.gz | awk '{print $1}')" ] && \
+    apk add ca-certificates curl make && \
     tar -C /tmp -xf /tmp/blackbox_exporter.tar.gz && \
-    apk add ca-certificates
+    mkdir -p /go/src/github.com/prometheus && \
+    mv /tmp/blackbox_exporter-$VERSION /go/src/github.com/prometheus/blackbox_exporter && \
+    cd /go/src/github.com/prometheus/blackbox_exporter && \
+      make build
 
-RUN mkdir -p /rootfs/etc/ssl/certs && \
-    cp \
-      /tmp/blackbox_exporter-$VERSION.linux-amd64/blackbox_exporter \
-      /tmp/blackbox_exporter-$VERSION.linux-amd64/blackbox.yml \
-      /rootfs/ && \
-    echo "nogroup:*:100:nobody" > /rootfs/etc/group && \
-    echo "nobody:*:100:100:::" > /rootfs/etc/passwd && \
-    cp /etc/ssl/certs/ca-certificates.crt /rootfs/etc/ssl/certs/
+RUN mkdir -p /rootfs && \
+      cp /go/src/github.com/prometheus/blackbox_exporter/blackbox.yml /rootfs/ && \
+    mkdir -p /rootfs/bin && \
+      cp /go/src/github.com/prometheus/blackbox_exporter/blackbox_exporter /rootfs/bin/ && \
+    mkdir -p /rootfs/etc && \
+      echo "nogroup:*:10000:nobody" > /rootfs/etc/group && \
+      echo "nobody:*:10000:10000:::" > /rootfs/etc/passwd && \
+    mkdir -p /rootfs/etc/ssl/certs && \
+      cp /etc/ssl/certs/ca-certificates.crt /rootfs/etc/ssl/certs/
 
 
 FROM scratch
 
-COPY --from=build --chown=100:100 /rootfs /
+COPY --from=build --chown=10000:10000 /rootfs /
 
-USER 100:100
+USER 10000:10000
 EXPOSE 9115/tcp
-ENTRYPOINT ["/blackbox_exporter"]
+ENTRYPOINT ["/bin/blackbox_exporter"]
