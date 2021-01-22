@@ -5,7 +5,7 @@ ARG CHECKSUM="b41f1301c991c0d0011652e2093588521925d1960c6f7649f96edecbf1aadfb8"
 
 ADD https://github.com/prometheus/blackbox_exporter/archive/v$VERSION.tar.gz /tmp/blackbox_exporter.tar.gz
 
-RUN [ "$CHECKSUM" = "$(sha256sum /tmp/blackbox_exporter.tar.gz | awk '{print $1}')" ] && \
+RUN [ "$(sha256sum /tmp/blackbox_exporter.tar.gz | awk '{print $1}')" = "$CHECKSUM" ] && \
     apk add ca-certificates curl make && \
     tar -C /tmp -xf /tmp/blackbox_exporter.tar.gz && \
     mkdir -p /go/src/github.com/prometheus && \
