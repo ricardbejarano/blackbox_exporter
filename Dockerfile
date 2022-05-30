@@ -1,7 +1,7 @@
 FROM golang:1-alpine AS build
 
-ARG VERSION="0.20.0"
-ARG CHECKSUM="177ad6958e8eb7828ed7ceeeb61eb8887b6f5ee93596a133ec155921673e162c"
+ARG VERSION="0.21.0"
+ARG CHECKSUM="be5ef1e737a3784920ef05d7470a5fe664da8012344f4e70cab61ab5705e0567"
 
 ADD https://github.com/prometheus/blackbox_exporter/archive/v$VERSION.tar.gz /tmp/blackbox_exporter.tar.gz
 
