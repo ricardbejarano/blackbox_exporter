@@ -20,13 +20,13 @@
 
 Available on Docker Hub as [`docker.io/ricardbejarano/blackbox_exporter`](https://hub.docker.com/r/ricardbejarano/blackbox_exporter):
 
-- [`0.22.0`, `latest` *(Dockerfile)*](Dockerfile)
+- [`0.23.0`, `latest` *(Dockerfile)*](Dockerfile)
 
 ### RedHat Quay
 
 Available on RedHat Quay as [`quay.io/ricardbejarano/blackbox_exporter`](https://quay.io/repository/ricardbejarano/blackbox_exporter):
 
-- [`0.22.0`, `latest` *(Dockerfile)*](Dockerfile)
+- [`0.23.0`, `latest` *(Dockerfile)*](Dockerfile)
 
 
 ## Configuration
